@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>云服务器安装Redis</title>
+    <link href="/2022/10/25/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85Redis/"/>
+    <url>/2022/10/25/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%89%E8%A3%85Redis/</url>
+    
+    <content type="html"><![CDATA[<h2 id="一、安装Redis"><a href="#一、安装Redis" class="headerlink" title="一、安装Redis"></a>一、安装Redis</h2><ol><li>从redis的官网下载redis的安装包，redis的官方网站地址：<a href="https://redis.io/">https://redis.io/</a></li><li>将redis的安装包通过Xftp上传到云服务上，自己选择一个文件夹存放redis安装包并进行解压</li></ol><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">tar -xzf redis-7.0.0.tar.gz<br></code></pre></td></tr></table></figure><p>解压后如下图：</p><p><img src="https://cdn.jsdelivr.net/gh/PursueMilk/img@master/img/image-20221020134406224.png" alt="image-20221020134406224"></p><ol start="3"><li>Redis是基于C语言编写的，需要安装Redis所需要的gcc依赖，使用如下命令安装依赖</li></ol><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">yum install -y gcc tcl<br></code></pre></td></tr></table></figure><ol start="4"><li>进入解压后的redis目录,运行编译命令,redis默认的安装路径是在 <code>/usr/local/bin</code>目录下</li></ol><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">make &amp;&amp; make install<br></code></pre></td></tr></table></figure><h2 id="二、开启远程连接"><a href="#二、开启远程连接" class="headerlink" title="二、开启远程连接"></a>二、开启远程连接</h2><ol><li>先找到redis.conf文件，将文件中的bind 127.0.0.1 -::1注释，不然只允许127.0.0.1连接，如下</li></ol><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment">#bind 127.0.0.1 -::1</span><br></code></pre></td></tr></table></figure><blockquote><p>bind ip是将指定的ip设置为redis的对外开放地址</p></blockquote><ol start="2"><li>将daemonize no修改为damemonize yes，即可后台运行redis</li></ol><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">daemonize <span class="hljs-built_in">yes</span> <br></code></pre></td></tr></table></figure><ol start="3"><li>查找 # requirepass foobared，将注释去掉，设置连接密码</li></ol><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">requirepass</span> 连接密码<br></code></pre></td></tr></table></figure><ol start="4"><li>启动redis</li></ol><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">redis-server redis.conf<br></code></pre></td></tr></table></figure><ol start="5"><li>本地连接redis成功<br><img src="https://cdn.jsdelivr.net/gh/PursueMilk/img@master/img/image-20221020140807427.png" alt="image-20221020140807427"></li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>redis</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>redis</tag>
+      
+      <tag>服务器</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Hello World</title>
     <link href="/2022/10/06/hello-world/"/>
     <url>/2022/10/06/hello-world/</url>
