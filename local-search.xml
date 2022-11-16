@@ -4,6 +4,60 @@
   
   
   <entry>
+    <title>编译及运行错误</title>
+    <link href="/2022/11/16/%E7%BC%96%E8%AF%91%E5%8F%8A%E8%BF%90%E8%A1%8C%E9%94%99%E8%AF%AF/"/>
+    <url>/2022/11/16/%E7%BC%96%E8%AF%91%E5%8F%8A%E8%BF%90%E8%A1%8C%E9%94%99%E8%AF%AF/</url>
+    
+    <content type="html"><![CDATA[<h1 id="一、编译及运行出错"><a href="#一、编译及运行出错" class="headerlink" title="一、编译及运行出错"></a>一、编译及运行出错</h1><blockquote><p>在一次作业中，将java文件上传至Linux服务器，使用javac命令进行编译，之后用java命令运行编译文件，出现找不到主类，之后想在本地使用命令行运行查找问题，结果直接编译出错，故写下该篇文章记录问题。</p></blockquote><h2 id="1-运行出错"><a href="#1-运行出错" class="headerlink" title="1. 运行出错"></a>1. 运行出错</h2><p><img src="https://cdn.jsdelivr.net/gh/PursueMilk/img@master/img/202211162057891.png" alt="运行出错"></p><p>java程序在Linux运行错误原因：java文件中带有包名，编译后的class文件应该放在该包下，使用以下命令运行。</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">java 包名.类名<br></code></pre></td></tr></table></figure><h2 id="2-编译出错"><a href="#2-编译出错" class="headerlink" title="2. 编译出错"></a>2. 编译出错</h2><p><img src="https://cdn.jsdelivr.net/gh/PursueMilk/img@master/img/202211162059530.png" alt="image-20221116205933493"></p><ol><li>Java程序在编译的时候，需要使用JDK开发工具包中的JAVAC.EXE命令，而JDK开发工具包是国际版的，默认是对Unicode的编码格式的源文件进行编译操作。</li><li>因此其他编码格式的源文件需要先转为Unicode格式才能够进行编译。</li><li>在未指定源程序文件的编码格式的情况下，JDK会优先获取操作系统的file.encoding参数，然后JDK就把我们的JAVA源程序从file.encoding编码格式转化为JAVA内部默认的Unicode格式放到内存中。</li><li><strong>如果源文件的编码格式不是file.encoding，就会出现乱码-不能够正确对应的中文而报错。</strong></li><li>javac把转换后的Unicode格式的文件进行编译成class类文件，此时.class文件是Unicode编码的，它暂放在内存中。之后，JDK将此以Unicode编码编译后的.class文件保存到操作系统中形成我们见到的.class文件。</li></ol><p><strong>解决方法</strong>：</p><ol><li>将java文件以ASCII编码格式保存</li><li>使用以下命令进行java程序的编译</li></ol><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">javac -encoding UTF-8 文件名.java<br></code></pre></td></tr></table></figure><p><strong>参考文章</strong></p><p><a href="https://blog.csdn.net/Tsing1644/article/details/107375558?spm=1001.2101.3001.6650.5&utm_medium=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-5-107375558-blog-106419663.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2~default~CTRLIST~Rate-5-107375558-blog-106419663.pc_relevant_default&utm_relevant_index=9">解析java程序编译时编码GBK的不可映射字符的错误</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>问题</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+      <tag>问题</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>IDEA建立多级包</title>
+    <link href="/2022/11/10/IDEA%E5%BB%BA%E7%AB%8B%E5%A4%9A%E7%BA%A7%E5%8C%85/"/>
+    <url>/2022/11/10/IDEA%E5%BB%BA%E7%AB%8B%E5%A4%9A%E7%BA%A7%E5%8C%85/</url>
+    
+    <content type="html"><![CDATA[<h1 id="一、建立多级包"><a href="#一、建立多级包" class="headerlink" title="一、建立多级包"></a>一、建立多级包</h1><blockquote><p>由于本人隔一段时间就会遇到该问题并且每次都忘记方法需要查找资料，故写下该片博客记录</p></blockquote><h2 id="1-1-建立Package"><a href="#1-1-建立Package" class="headerlink" title="1.1 建立Package"></a>1.1 建立Package</h2><p><img src="https://cdn.jsdelivr.net/gh/PursueMilk/img@master/img/202211101716505.png" alt="步骤一"></p><p><img src="https://cdn.jsdelivr.net/gh/PursueMilk/img@master/img/202211101717810.png" alt="步骤二"></p><p>建立多级package<strong>中间用.分割</strong></p><h2 id="1-2-建立Directionary"><a href="#1-2-建立Directionary" class="headerlink" title="1.2 建立Directionary"></a>1.2 建立Directionary</h2><p><img src="https://cdn.jsdelivr.net/gh/PursueMilk/img@master/img/202211101719735.png" alt="步骤一"></p><p><img src="https://cdn.jsdelivr.net/gh/PursueMilk/img@master/img/202211101720925.png" alt="步骤二"></p><p>建立多级directionary<strong>中间用&#x2F;分割</strong>，<strong>不能使用.分割，使用.分割建立的为单级directionary</strong></p><h1 id="二、-解决多级包不分离问题"><a href="#二、-解决多级包不分离问题" class="headerlink" title="二、 解决多级包不分离问题"></a>二、 解决多级包不分离问题</h1><p>如图：</p><p><img src="https://cdn.jsdelivr.net/gh/PursueMilk/img@master/img/202211101726557.png" alt="步骤一"></p><p><img src="https://cdn.jsdelivr.net/gh/PursueMilk/img@master/img/202211101728575.png" alt="步骤二"></p><p>取消选择：Compact Middle Packages，多级目录分离</p><p><img src="https://cdn.jsdelivr.net/gh/PursueMilk/img@master/img/202211101729695.png" alt="步骤三"></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>IDEA</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>IDEA</tag>
+      
+      <tag>问题</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>反射</title>
     <link href="/2022/10/30/%E5%8F%8D%E5%B0%84/"/>
     <url>/2022/10/30/%E5%8F%8D%E5%B0%84/</url>
