@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>eNSP的使用</title>
+    <link href="/2022/12/04/eNSP%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <url>/2022/12/04/eNSP%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<h1 id="一、eNSP软件是什么？"><a href="#一、eNSP软件是什么？" class="headerlink" title="一、eNSP软件是什么？"></a>一、eNSP软件是什么？</h1><p>eNSP(Enterprise Network Simulation Platform)是一款由华为提供的、可扩展的、图形化操作的网络仿真工具平台，主要对企业网络路由器、交换机进行软件仿真，完美呈现真实设备实景，支持大型网络模拟，让广大用户有机会在没有真实设备的情况下能够模拟演练，学习网络技术。</p><blockquote><p>以上解释来自于百度百科</p></blockquote><h1 id="二、eNSP软件安装"><a href="#二、eNSP软件安装" class="headerlink" title="二、eNSP软件安装"></a>二、eNSP软件安装</h1><h2 id="2-1-安装包"><a href="#2-1-安装包" class="headerlink" title="2.1 安装包"></a>2.1 安装包</h2><p>由于现在华为官网没有提供eNSP的安装包了，所以需要下载的同学应到网上寻找资源下载对应的版本，下载完之后进入安装界面，只需一直点击下一步即可，安装eNSP的时候会附带安装VirtualBox、Wireshark。</p><h2 id="2-2-安装遇到的坑"><a href="#2-2-安装遇到的坑" class="headerlink" title="2.2 安装遇到的坑"></a>2.2 安装遇到的坑</h2><p>由于个人找到的eNSP版本为1.2.00.510，其附带安装的VirtualBox（版本是5左右的）无法在Windows上运行，所以将其卸载后安装版本6的，但是eNSP不支持，最后看到一篇关于解决VirtualBox不兼容问题的博客，然后将其换为VirtualBox-5.2.44-139111-Win该版本后问题解决。</p><h1 id="三、eNSP的使用"><a href="#三、eNSP的使用" class="headerlink" title="三、eNSP的使用"></a>三、eNSP的使用</h1><h2 id="3-1-主页"><a href="#3-1-主页" class="headerlink" title="3.1 主页"></a>3.1 主页</h2><div align="center"><img src="https://cdn.jsdelivr.net/gh/PursueMilk/img@master/img/202211220146783.png" height="60%" width="80%"></div><p>上图所示即为eNSP打开的界面，上面为功能栏，左侧为一些实验器材，中间的样例即为自带可运行的示例，学习提供了关于eNSP的一些使用文档和介绍。</p><h2 id="3-2-拓扑页"><a href="#3-2-拓扑页" class="headerlink" title="3.2 拓扑页"></a>3.2 拓扑页</h2><div align="center"><img src="https://cdn.jsdelivr.net/gh/PursueMilk/img@master/img/202211220154865.png" height="60%" width="80%"></div><p>中间即为实验区域，左侧为实验的设备。</p><h3 id="PC配置"><a href="#PC配置" class="headerlink" title="PC配置"></a>PC配置</h3><div align="center"><img src="https://cdn.jsdelivr.net/gh/PursueMilk/img@master/img/202211220158012.png" height="40%" width="60%"></div><p>通过PC的配置页面进行IP地址、子网掩码、网关的配置，网关即为该PC连接的路由的IP地址，可以通过对路由器进行DHCP配置，选择DHCP自动分配IP地址。</p><h3 id="路由器"><a href="#路由器" class="headerlink" title="路由器"></a>路由器</h3><div align="center"><img src="https://cdn.jsdelivr.net/gh/PursueMilk/img@master/img/202211220204861.png" height="40%" width="40%"></div><p>一般常用的路由器即为AR2220、Router路由器，可用通过选择CLI或者双击路由器图标进入类似于DOS黑窗口中进行配置。首先sys进入然后通过 int  g0&#x2F;0&#x2F;0(端点号)选择对应端点，通过ip add ip地址 地址掩码设置该端点的ip地址。</p><h4 id="设置ripv2"><a href="#设置ripv2" class="headerlink" title="设置ripv2"></a>设置ripv2</h4><ol><li><p>对路由器进行配置：rip （进入rip协议的配置）</p></li><li><p>Version 2（选择RIP的版本）</p></li><li><p>Network 网络地址（与该路由直连的网络地址）</p></li><li><p>对相连的路由器都使用以上配置。</p></li><li><p>配置完成后使用dis ip routing-table命令查看路由表，表中存在rip协议的路由对应数据，即为配置成功</p></li></ol><p><img src="https://cdn.jsdelivr.net/gh/PursueMilk/img@master/img/202212041710885.png" alt="image-20221204171038773"></p><h4 id="设置DHCP"><a href="#设置DHCP" class="headerlink" title="设置DHCP"></a>设置DHCP</h4><ol><li><p>Dhcp enable开启DHCP服务</p></li><li><p>Ip pool pool1创建全局地址池pool1</p></li><li><p>getway-list 网关地址 设置分配的网关地址</p></li><li><p>network ip地址 mask 子网掩码 设置全局地址池的范围</p></li><li><p>dns-list 主要DNS 备用DNS 设置DNS</p></li><li><p>excluded-ip-address ip地址 ip地址 设置不参与动态分配的地址，可以是一个范围</p></li><li><p>再进入对应的接口，dhcp select global开启全局地址分配ip</p></li></ol><p><img src="https://cdn.jsdelivr.net/gh/PursueMilk/img@master/img/202212041712625.png" alt="image-20221204171236569"></p><h3 id="3-3-交换机"><a href="#3-3-交换机" class="headerlink" title="3.3 交换机"></a>3.3 交换机</h3><p>ensp中S5700交换机为三层交换机，你可以为它设置ip地址，若无需要可直接使用。</p><h2 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h2><p>以上为本人完成计网作业的一些总结，希望可以帮助到大家。</p><p><strong>参考资料</strong></p><p><a href="https://blog.csdn.net/lushixuan12345/article/details/124227195">【eNSP】解决virtualbox不兼容&#x2F;无法运行问题_擅长开发Bug的Mr.NaCl的博客-CSDN博客</a></p><p><a href="https://www.bilibili.com/read/cv14351927">eNSP的DHCP的三种配置 - 哔哩哔哩 (bilibili.com)</a></p><p><a href="https://blog.csdn.net/weixin_48711866/article/details/121604408">华为ensp路由器动态RIP协议配置</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>计网</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>计网</tag>
+      
+      <tag>ensp</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>编译及运行错误</title>
     <link href="/2022/11/16/%E7%BC%96%E8%AF%91%E5%8F%8A%E8%BF%90%E8%A1%8C%E9%94%99%E8%AF%AF/"/>
     <url>/2022/11/16/%E7%BC%96%E8%AF%91%E5%8F%8A%E8%BF%90%E8%A1%8C%E9%94%99%E8%AF%AF/</url>
@@ -20,9 +47,9 @@
     
     <tags>
       
-      <tag>Java</tag>
-      
       <tag>问题</tag>
+      
+      <tag>Java</tag>
       
     </tags>
     
@@ -104,19 +131,6 @@
       <tag>服务器</tag>
       
     </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="/2022/10/06/hello-world/"/>
-    <url>/2022/10/06/hello-world/</url>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-    
-    
     
   </entry>
   
