@@ -4,6 +4,33 @@
   
   
   <entry>
+    <title>版本控制</title>
+    <link href="/2023/07/09/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/"/>
+    <url>/2023/07/09/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/</url>
+    
+    <content type="html"><![CDATA[<h1 id="一、版本管理的演变"><a href="#一、版本管理的演变" class="headerlink" title="一、版本管理的演变"></a>一、版本管理的演变</h1><h2 id="1-未出现版本控制"><a href="#1-未出现版本控制" class="headerlink" title="1. 未出现版本控制"></a>1. 未出现版本控制</h2><p>用目录拷贝区分不同版本，公共文件容易被覆盖，成员沟通成本高、效率低下</p><h2 id="2-集中式VCS"><a href="#2-集中式VCS" class="headerlink" title="2. 集中式VCS"></a>2. 集中式VCS</h2><p>有集中的版本管理服务器，具备文件版本管理和分支管理的能力，但是客户端必须时刻与服务器相连（本地只有一部分版本，只能通过服务器查询整个项目的情况）。如：CAS、SVN</p><p><img src="https://raw.githubusercontent.com/PursueMilk/img/main/img/202307091714274.png" alt="img"></p><h2 id="3-分布式VCS"><a href="#3-分布式VCS" class="headerlink" title="3. 分布式VCS"></a>3. 分布式VCS</h2><p>服务端和客户端都具有完整的版本库，查看历史版本等操作不需要访问服务器，比集中式VCS更能提高版本管理效率。如：Git等</p><p><img src="https://raw.githubusercontent.com/PursueMilk/img/main/img/202307091714280.png" alt="img"></p><p>Git、GitHub、GitLab的区别？</p><p>GitHub、GitLab都是基于Web的Git仓库，代码托管平台。Git是版本控制系统，是一种工具，用于代码的版本控制和存储。</p><p>相关资料：<a href="https://blog.cutepig.net/archives/amp/423">https://blog.cutepig.net/archives/amp/423</a></p><h1 id="二、Git相关知识"><a href="#二、Git相关知识" class="headerlink" title="二、Git相关知识"></a>二、Git相关知识</h1><h2 id="1-Git基础"><a href="#1-Git基础" class="headerlink" title="1. Git基础"></a>1. Git基础</h2><h3 id="1-1-Git的安装及配置"><a href="#1-1-Git的安装及配置" class="headerlink" title="1.1. Git的安装及配置"></a>1.1. Git的安装及配置</h3><ol><li>安装<a href="https://git-scm.com/downloads">Git</a>，安装好后<code> git --version</code> 查看git 的版本。</li><li>Git的相关设置：</li></ol><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">git config <span class="hljs-attr">--global</span> user<span class="hljs-selector-class">.name</span> <span class="hljs-string">&#x27;your_name&#x27;</span><br>git config <span class="hljs-attr">--global</span> user<span class="hljs-selector-class">.email</span> <span class="hljs-string">&#x27;your_email&#x27;</span><br></code></pre></td></tr></table></figure><p>通过以上命令设置全局用户名和邮箱，复查代码可以通知对应的提交人员</p><p>Git的配置范围（默认local，范围越小优先级越高）</p><p><code>git config --local</code> local：设置在当前仓库有效</p><p><code>git config --global</code>global：设置在该用户有效</p><p><code>git config --system</code>system：设置在多用户有效</p><p>查看Git的配置</p><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs verilog">git <span class="hljs-keyword">config</span> --list --范围(<span class="hljs-keyword">local</span>/<span class="hljs-keyword">global</span>/system)<br></code></pre></td></tr></table></figure><h3 id="1-2-Git的常用命令"><a href="#1-2-Git的常用命令" class="headerlink" title="1.2. Git的常用命令"></a>1.2. Git的常用命令</h3><ol><li>创建Git仓库</li></ol><p><code>git init</code>在当前文件初始化Git仓库</p><p><code>git init 文件夹名</code>在当前文件夹下创建该文件并初始化Git仓库</p><ol start="2"><li>查看状态</li></ol><p><code>git status</code> 查看文件的状态</p><ol start="3"><li>查看文件之间的差异</li></ol><p><code>git diff --cached xx</code>   查看暂存区的变化</p><p><code>git diff xx</code>  查看当前工作区和暂存区之间的差异</p><ol start="4"><li>提交更新</li></ol><p><code>git add filename</code> 将文件提交到暂存区</p><p><code>git add -u</code>  将已管理并且修改的文件都进行暂存</p><p><code>git commit -m &#39;&#39;</code> 提交暂存区中的文件</p><ol start="5"><li>删除文件</li></ol><p><code>git rm filename</code>  将删除对应的文件暂存到缓冲区（工作目录也会删除对应的文件）</p><p><code>git rm --cached filename</code> 只从暂存区移除，工作区不删除</p><ol start="6"><li>修改文件名</li></ol><p><code>mv filename newFilename</code><br><code>git rm filename</code><br><code>git add newFilename</code></p><p>总结：<code>git mv filename newFilename</code></p><ol start="7"><li>查看提交历史</li></ol><p><code>git log </code> 按时间顺序列出所有提交，最近的在最上面</p><p><code>git log --online</code> 查看简洁信息（每个提交信息在一行中显示）</p><p><code>git log -n4</code> 只查看前几次提交信息</p><p><code>git log --all</code> 查看所有分支的日志</p><p><code>git log --all --graph</code> 图形化形式查看所有分支的日志</p><ol start="8"><li>提交区操作</li></ol><p><code>git commit --amend</code>  对最近一次提交信息进行修改或者将第二次提交替代第一次提交</p><p><code>git rebase -i parentid</code>     修改以前提交的commit信息，将需要修改的信息修改为 r</p><p><code>git rebase -i parentid</code>      修改以前提交的信息，将需要修改的信息修改为 s</p><p><code>git reset --hard commitid</code> 将之前提交的commit都清除，所有文件回到这个commit提交的内容</p><ol start="9"><li>暂存区操作</li></ol><p><code>git reset head (filename)</code> 清空暂存区，可以指定文件</p><p><code>git checkout filename</code>  将工作区恢复成最近一次提交内容</p><p><code>git chechout commitID </code>切换到该次提交（头指针分离）</p><ol start="10"><li>远程仓库</li></ol><p><code>git remote -v</code> 显示需要读写远程仓库使用的 Git 保存的简写与其对应的 URL </p><p><code>git remote add name url</code> 添加一个新的远程 Git 仓库</p><p><code>git remote rename oldname newname</code> 远程仓库重命名</p><p><code>git remote remove name</code> 删除远程仓库，其相关分支以及配置也会被删除</p><p><code>git fetch remotename branchname</code> 拉取远端分支</p><p><code>git push remotename branch</code> 向远端推送分支</p><p><code>git push &lt;remote&gt; localbranch:refs/for/remotebranch  </code> 向远端推送分支（需要进行code review）</p><blockquote><p>git push origin HEAD:refs&#x2F;for&#x2F;remotebranch</p></blockquote><h2 id="2-Git分支"><a href="#2-Git分支" class="headerlink" title="2. Git分支"></a>2. Git分支</h2><p>使用分支可以把个人工作从开发主线上分离开来，以免影响开发主线。创建分支只是创建了一个可移动的新指针，通过head指针就可以知道当前处于哪个分支上。</p><p><img src="https://raw.githubusercontent.com/PursueMilk/img/main/img/202307091714266.png" alt="img"></p><ol><li>分支命令</li></ol><p><code>git branch</code> 分支列表</p><p><code>git branch name</code> 创建分支</p><p><code>git branch -D name</code>  删除分支</p><p><code>git checkout (-b) name</code> 切换分支（创建并切换分支）</p><p><code>git branch --merged</code> 查看已合并的分支</p><p><code>git branch --no-merged</code> 查看未合并的分支</p><ol start="2"><li>远程分支</li></ol><p>远程分支以 remotename&#x2F;branch 命名，如 origin&#x2F;master </p><p><code>git remote show name</code> 查看远程分支信息</p><p><code>git fetch remotename branchname</code> 同步远程分支数据，不写远程仓库默认所有的，不写分支默认远程仓库所有分支</p><p><code>git merge branch</code> 合并冲突</p><p><code>git pull remotename remotebranch:localbranch</code> 从远程仓库拉取数据并合并，省略本地分支则默认当前所在分支</p><p><code>git push remotename localbranch:remotebranch</code> 将数据推送到远程分支上</p><ol start="3"><li>跟踪分支</li></ol><p>跟踪分支是与远程分支有直接关系的本地分支。</p><p><code>git checkout -b localbranch remotename/branch</code> 创建跟踪分支（起点在remotename&#x2F;branch上的分支）</p><p><code>git branch -u remotename/branch</code> 设置跟踪分支</p><p><code>git branch -vv</code> 可查看本地分支跟踪的远程分支</p><ol start="4"><li>删除远程分支</li></ol><p><code>git push &lt;remote&gt; --delete branch</code> 删除远程分支</p><ol start="5"><li>变基</li></ol><p>使用 rebase 命令将提交到某一分支上的所有修改都移至另一分支上，这个操作就叫变基。</p><p><code>git rebase branch</code>  以该分支为基底 </p><ol start="6"><li>缓存</li></ol><p><code>git stash</code> 将当前改动暂存 </p><p><code>git stash list</code> 查看暂存列表</p><p><code>git stash pop</code>  弹出第一个暂存</p><p><code>git stash apply</code> 应用第一个暂存，不会从暂存列表中移除</p><p><code>git stash clear</code> 清除暂存列表 </p><ol start="7"><li>禁止行为</li></ol><p><code>git push -f</code>  强制推送</p><p>不要对集成分支进行变基</p><ol start="8"><li>实践</li></ol><p><code>git pull origin master:master</code> </p><p><code>git merge --no-ff branchname</code></p><p><code>git commit --amend</code></p><p><code>git push origin HEAD:refs/for/master</code></p><blockquote><p>–no-ff 关闭快进模式，产生一个新的提交</p></blockquote><h2 id="3-GitHub"><a href="#3-GitHub" class="headerlink" title="3. GitHub"></a>3. GitHub</h2><ol><li><code>in:readme</code> 在readme中搜索</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>版本控制</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>版本控制</tag>
+      
+      <tag>Git</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Linux</title>
     <link href="/2023/07/09/Linux/"/>
     <url>/2023/07/09/Linux/</url>
@@ -342,9 +369,9 @@
     
     <tags>
       
-      <tag>Java</tag>
-      
       <tag>问题</tag>
+      
+      <tag>Java</tag>
       
     </tags>
     

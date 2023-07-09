@@ -16,27 +16,29 @@
   <meta name="author" content="PursueMilk">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Linux相关命令操作">
+    <meta name="description" content="Git相关命令操作">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux">
-<meta property="og:url" content="https://pursuemilk.github.io/2023/07/09/Linux/index.html">
+<meta property="og:title" content="版本控制">
+<meta property="og:url" content="https://pursuemilk.github.io/2023/07/09/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/index.html">
 <meta property="og:site_name" content="PursueMilk">
-<meta property="og:description" content="Linux相关命令操作">
+<meta property="og:description" content="Git相关命令操作">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://raw.githubusercontent.com/PursueMilk/img/main/img/202307091546564.png">
-<meta property="article:published_time" content="2023-07-09T09:00:30.000Z">
-<meta property="article:modified_time" content="2023-07-09T09:07:18.080Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/PursueMilk/img/main/img/202307091714274.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/PursueMilk/img/main/img/202307091714280.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/PursueMilk/img/main/img/202307091714266.png">
+<meta property="article:published_time" content="2023-07-09T12:27:25.000Z">
+<meta property="article:modified_time" content="2023-07-09T12:27:57.536Z">
 <meta property="article:author" content="PursueMilk">
-<meta property="article:tag" content="操作系统">
-<meta property="article:tag" content="Linux">
+<meta property="article:tag" content="版本控制">
+<meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/PursueMilk/img/main/img/202307091546564.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/PursueMilk/img/main/img/202307091714274.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Linux - PursueMilk</title>
+  <title>版本控制 - PursueMilk</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Linux"></span>
+            <span id="subtitle" data-typed-text="版本控制"></span>
           
         </div>
 
@@ -212,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-07-09 17:00" pubdate>
-          2023年7月9日 下午
+        <time datetime="2023-07-09 20:27" pubdate>
+          2023年7月9日 晚上
         </time>
       </span>
     
@@ -224,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3.1k 字
+          2.9k 字
         
       </span>
     
@@ -273,400 +275,158 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Linux</h1>
+            <h1 style="display: none">版本控制</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="一、Linux概述"><a href="#一、Linux概述" class="headerlink" title="一、Linux概述"></a>一、Linux概述</h1><h2 id="1-1-什么是Linux？"><a href="#1-1-什么是Linux？" class="headerlink" title="1.1 什么是Linux？"></a>1.1 什么是Linux？</h2><ol>
-<li>一种是Linux编写的开源操作系统的内核</li>
-<li>一种广义的操作系统</li>
+                <h1 id="一、版本管理的演变"><a href="#一、版本管理的演变" class="headerlink" title="一、版本管理的演变"></a>一、版本管理的演变</h1><h2 id="1-未出现版本控制"><a href="#1-未出现版本控制" class="headerlink" title="1. 未出现版本控制"></a>1. 未出现版本控制</h2><p>用目录拷贝区分不同版本，公共文件容易被覆盖，成员沟通成本高、效率低下</p>
+<h2 id="2-集中式VCS"><a href="#2-集中式VCS" class="headerlink" title="2. 集中式VCS"></a>2. 集中式VCS</h2><p>有集中的版本管理服务器，具备文件版本管理和分支管理的能力，但是客户端必须时刻与服务器相连（本地只有一部分版本，只能通过服务器查询整个项目的情况）。如：CAS、SVN</p>
+<p><img src="https://raw.githubusercontent.com/PursueMilk/img/main/img/202307091714274.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h2 id="3-分布式VCS"><a href="#3-分布式VCS" class="headerlink" title="3. 分布式VCS"></a>3. 分布式VCS</h2><p>服务端和客户端都具有完整的版本库，查看历史版本等操作不需要访问服务器，比集中式VCS更能提高版本管理效率。如：Git等</p>
+<p><img src="https://raw.githubusercontent.com/PursueMilk/img/main/img/202307091714280.png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<p>Git、GitHub、GitLab的区别？</p>
+<p>GitHub、GitLab都是基于Web的Git仓库，代码托管平台。Git是版本控制系统，是一种工具，用于代码的版本控制和存储。</p>
+<p>相关资料：<a target="_blank" rel="noopener" href="https://blog.cutepig.net/archives/amp/423">https://blog.cutepig.net/archives/amp/423</a></p>
+<h1 id="二、Git相关知识"><a href="#二、Git相关知识" class="headerlink" title="二、Git相关知识"></a>二、Git相关知识</h1><h2 id="1-Git基础"><a href="#1-Git基础" class="headerlink" title="1. Git基础"></a>1. Git基础</h2><h3 id="1-1-Git的安装及配置"><a href="#1-1-Git的安装及配置" class="headerlink" title="1.1. Git的安装及配置"></a>1.1. Git的安装及配置</h3><ol>
+<li>安装<a target="_blank" rel="noopener" href="https://git-scm.com/downloads">Git</a>，安装好后<code> git --version</code> 查看git 的版本。</li>
+<li>Git的相关设置：</li>
 </ol>
-<blockquote>
-<p>Linux一般用作服务器，它不需要客户端那样华丽的界面，所以它一般以命令行形式进行操作。</p>
-</blockquote>
-<h2 id="1-2-Linux的版本"><a href="#1-2-Linux的版本" class="headerlink" title="1.2 Linux的版本"></a>1.2 Linux的版本</h2><ol>
-<li>内核版本：Linux内核分为三个部分主版本号、次版本号、末版本号，次版本号是奇数为开发版，偶数为稳定版。</li>
-<li>发行版：Linux是开源的，国内厂商会基于Linux内核进行开发，如：redhat(商用)、fedora(免费)、centos(基于redhat编译的免费版)</li>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">git config <span class="hljs-attr">--global</span> user<span class="hljs-selector-class">.name</span> <span class="hljs-string">&#x27;your_name&#x27;</span><br>git config <span class="hljs-attr">--global</span> user<span class="hljs-selector-class">.email</span> <span class="hljs-string">&#x27;your_email&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p>通过以上命令设置全局用户名和邮箱，复查代码可以通知对应的提交人员</p>
+<p>Git的配置范围（默认local，范围越小优先级越高）</p>
+<p><code>git config --local</code> local：设置在当前仓库有效</p>
+<p><code>git config --global</code>global：设置在该用户有效</p>
+<p><code>git config --system</code>system：设置在多用户有效</p>
+<p>查看Git的配置</p>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs verilog">git <span class="hljs-keyword">config</span> --list --范围(<span class="hljs-keyword">local</span>/<span class="hljs-keyword">global</span>/system)<br></code></pre></td></tr></table></figure>
+
+<h3 id="1-2-Git的常用命令"><a href="#1-2-Git的常用命令" class="headerlink" title="1.2. Git的常用命令"></a>1.2. Git的常用命令</h3><ol>
+<li>创建Git仓库</li>
 </ol>
-<blockquote>
-<p>一般我们使用的都是centos，使用ssh连接远程服务器</p>
-</blockquote>
-<h2 id="1-3-Linux常见目录"><a href="#1-3-Linux常见目录" class="headerlink" title="1.3 Linux常见目录"></a>1.3 Linux常见目录</h2><ul>
-<li>&#x2F; 根目录</li>
-<li>&#x2F;root  root用户的家目录</li>
-<li>&#x2F;home&#x2F;username 普通用户的家目录</li>
-<li>&#x2F;etc 配置文件目录</li>
-<li>&#x2F;bin 命令目录</li>
-<li>&#x2F;sbin 管理命令目录</li>
-<li>&#x2F;user&#x2F;bin &#x2F;user&#x2F;sbin 系统预装的其他命令</li>
-</ul>
-<h1 id="二、系统操作"><a href="#二、系统操作" class="headerlink" title="二、系统操作"></a>二、系统操作</h1><h2 id="2-1-帮助命令"><a href="#2-1-帮助命令" class="headerlink" title="2.1 帮助命令"></a>2.1 帮助命令</h2><ol>
-<li><p><strong>man 帮助命令</strong></p>
-<p>man [命令名称] </p>
-</li>
-<li><p><strong>help 帮助命令</strong></p>
-<p>help cd[命令]	内部命令使用 help 帮助</p>
-<p>ls –help      外部命令使用 help 帮助</p>
-</li>
-</ol>
-<blockquote>
-<p>shell（命令解释器）自带的为内部命令，不自带的为外部命令，type 命令 查看该命令为内部命令或外部命令</p>
-</blockquote>
-<ol start="3">
-<li><p><strong>info 帮助</strong></p>
-<p>info [命令]</p>
-</li>
-</ol>
-<blockquote>
-<p>info比 help 更详细，作为 help 的补充，提示全为英文版</p>
-</blockquote>
-<h2 id="2-2-文件管理"><a href="#2-2-文件管理" class="headerlink" title="2.2 文件管理"></a>2.2 文件管理</h2><h3 id="2-2-1-文件查看"><a href="#2-2-1-文件查看" class="headerlink" title="2.2.1 文件查看"></a>2.2.1 文件查看</h3><ol>
-<li><p><strong>显示当前位置</strong></p>
-<p>pwd   </p>
-</li>
-<li><p><strong>更改当前的操作目录</strong></p>
-<p>cd</p>
-</li>
-<li><p><strong>查看当前目录下的文件</strong></p>
-<p>ls  [选项，选项…]   [文件名…]  </p>
-<p>常用参数：</p>
-<ul>
-<li>-l 长格式显示文件（显示更多的文件信息，如：时间、权限、作者等）</li>
-<li>-a 显示隐藏文件</li>
-<li>-r 逆序显示</li>
-<li>-t 按照时间顺序显示</li>
-<li>-R 递归显示</li>
-<li>-h 文件大小以MB显示</li>
-</ul>
-</li>
-</ol>
-<h3 id="2-2-2-目录管理"><a href="#2-2-2-目录管理" class="headerlink" title="2.2.2 目录管理"></a>2.2.2 目录管理</h3><ol>
-<li><p><strong>创建目录</strong></p>
-<p>mkdir   [参数]   [目录名]	</p>
-<p>常用参数：</p>
-<ul>
-<li>-p  建立多级目录</li>
-</ul>
-</li>
-<li><p><strong>删除空目录</strong></p>
-<p>rmdir    [目录名]</p>
-</li>
-<li><p><strong>创建文件</strong></p>
-<p>touch   [文件名]</p>
-</li>
-<li><p><strong>删除文件</strong></p>
-<p>rm [参数] [文件名]</p>
-<p>常用参数</p>
-<ul>
-<li>-r 删除目录（包括目录下所有文件）</li>
-<li>-f 删除文件不进行提示</li>
-</ul>
-</li>
-<li><p><strong>复制文件或目录</strong></p>
-<p>cp   源文件   目的文件    </p>
-<p>常用参数</p>
-<ul>
-<li>-r 复制目录</li>
-<li>-p 保留用户、权限、时间等文件属性</li>
-</ul>
-</li>
-<li><p><strong>移动文件（重命名）</strong></p>
-<p>mv  [选项]  源文件  目标文件</p>
-<p>常用参数</p>
-<ul>
-<li>-r 移动目录</li>
-</ul>
-</li>
-</ol>
-<h3 id="2-2-3-文本查看"><a href="#2-2-3-文本查看" class="headerlink" title="2.2.3 文本查看"></a>2.2.3 文本查看</h3><ol>
-<li><p><strong>文本内容显示到终端</strong></p>
-<p>cat	[文件名]</p>
-</li>
-<li><p><strong>查看文件开头</strong></p>
-<p>head	[参数]	[文件名]</p>
-<p>常用参数</p>
-<ul>
-<li>-n	n行（默认10）</li>
-</ul>
-</li>
-<li><p><strong>查看文件结尾</strong></p>
-<p>tail	[参数]	[文件名]</p>
-<p>常用参数</p>
-<ul>
-<li>-f	文件内容更新后，显示信息同步更新</li>
-<li>-n   n行（默认10）</li>
-</ul>
-</li>
-<li><p><strong>统计文件内同信息</strong></p>
-<p>wc	[参数]	[文件名]</p>
-<p>常用参数</p>
-<ul>
-<li>-l   统计文件的行数</li>
-</ul>
-</li>
-</ol>
-<h2 id="2-3-打包和压缩"><a href="#2-3-打包和压缩" class="headerlink" title="2.3 打包和压缩"></a>2.3 打包和压缩</h2><ol>
-<li><p><strong>打包</strong></p>
-<p>tar [参数] [打包的文件名] [打包的文件夹]</p>
-<p>常用参数</p>
-<ul>
-<li>c 打包</li>
-<li>x 解包</li>
-<li>f 指定操作类型为文件</li>
-<li>v 显示详细信息</li>
-<li>z gzip压缩</li>
-<li>j bzip2压缩</li>
-</ul>
-</li>
-<li><p><strong>解压</strong></p>
-<p>tar -vxf 文件名</p>
-</li>
-</ol>
-<blockquote>
-<p>参数添加不同的压缩类型参数，解压不同类型的压缩文件，如 tar -vzxf filename 解压gzip压缩</p>
-</blockquote>
-<h2 id="2-4-文本编辑器"><a href="#2-4-文本编辑器" class="headerlink" title="2.4 文本编辑器"></a>2.4 文本编辑器</h2><ol>
-<li><p><strong>查看文档</strong></p>
-<p>vim 文件名</p>
-</li>
-<li><p><strong>输入a、 i、o 等进入编辑模式</strong></p>
-</li>
-<li><p><strong>剪切</strong></p>
-<p>[n]dd   剪切当前行开始的n行</p>
-</li>
-<li><p><strong>复制</strong></p>
-<p>[n]yy   复制当前行开始的n行</p>
-<p>[n]p     粘贴n次所复制的</p>
-</li>
-<li><p><strong>删除</strong></p>
-<p>[n]x      删除当行,或者删除当前行开始的n行</p>
-</li>
-<li><p><strong>关闭高亮</strong></p>
-<p>:set nohl</p>
-</li>
-<li><p><strong>查看行数</strong></p>
-<p>:set [no]nu</p>
-</li>
-</ol>
-<blockquote>
-<p>设置永久生效则需要去配置文件（&#x2F;etc&#x2F;vimrc）中添加 set nu的配置</p>
-</blockquote>
-<ol start="8">
-<li><p><strong>撤销命令</strong></p>
-<p>:[n]u   撤销上[n]次的操作</p>
-</li>
-<li><p><strong>查找命令</strong></p>
-<p>&#x2F;字符</p>
-</li>
-</ol>
-<blockquote>
-<p>n向下移动查找 shift n向上移动查找</p>
-</blockquote>
-<ol start="10">
-<li><p><strong>替换</strong></p>
-<p>:s&#x2F;old&#x2F;new  默认表示所在行范围进行替换</p>
-<p>:%s&#x2F;old&#x2F;new&#x2F;g 整个文件范围替换使用</p>
-</li>
-</ol>
-<blockquote>
-<p>%代表整个文件范围，g 表示全局（多次替换）</p>
-</blockquote>
-<ol start="11">
-<li><p><strong>临时命令</strong></p>
-<p>:!  命令</p>
-</li>
-</ol>
-<blockquote>
-<p>! ipconfig ，表示临时查看命令</p>
-</blockquote>
-<ol start="12">
-<li><p><strong>文件保存退出</strong></p>
-<p>:w filename 保存到指定文件名中，不接文件名表示保存到原始文件当中</p>
-<p>:q 退出</p>
-<p>:q! 强制退出</p>
-<p>:wq! 强制写入退出</p>
-</li>
-<li><p><strong>可视模式</strong></p>
-<p>v 字符可视模式，以字符为单位选择</p>
-<p>V 行可视模式，以行为单位选择</p>
-<p>ctrl+v 块可视模式，光标选中多行后按大写I，[按d进行删除]然后输入内容，再按两次ESC，即可批量操作</p>
-</li>
-</ol>
-<h2 id="2-5-用户和用户组管理"><a href="#2-5-用户和用户组管理" class="headerlink" title="2.5 用户和用户组管理"></a>2.5 用户和用户组管理</h2><ol>
-<li><p><strong>添加用户</strong></p>
-<p>useradd username</p>
-</li>
-</ol>
-<blockquote>
-<p>id username 可以查看用户相关信息</p>
-</blockquote>
+<p><code>git init</code>在当前文件初始化Git仓库</p>
+<p><code>git init 文件夹名</code>在当前文件夹下创建该文件并初始化Git仓库</p>
 <ol start="2">
-<li><p><strong>删除用户</strong></p>
-<p>userdel [参数] username</p>
-<p>常用参数</p>
-<ul>
-<li>-r 删除用户的家目录</li>
-</ul>
-</li>
-<li><p><strong>修改用户密码</strong></p>
-<p>passwd username</p>
-</li>
-<li><p><strong>修改用户属性</strong> </p>
-<p>usermode -g groupname username   将用户加入到该组</p>
-</li>
-<li><p><strong>切换用户</strong></p>
-<p>su - username</p>
-</li>
+<li>查看状态</li>
 </ol>
-<blockquote>
-<p>-代表切换到该用户所在的目录，visudo 设置需要使用 sudo 的用户组以及相关命令，sudo 命令以其他用户身份执行命令</p>
-</blockquote>
+<p><code>git status</code> 查看文件的状态</p>
+<ol start="3">
+<li>查看文件之间的差异</li>
+</ol>
+<p><code>git diff --cached xx</code>   查看暂存区的变化</p>
+<p><code>git diff xx</code>  查看当前工作区和暂存区之间的差异</p>
+<ol start="4">
+<li>提交更新</li>
+</ol>
+<p><code>git add filename</code> 将文件提交到暂存区</p>
+<p><code>git add -u</code>  将已管理并且修改的文件都进行暂存</p>
+<p><code>git commit -m &#39;&#39;</code> 提交暂存区中的文件</p>
+<ol start="5">
+<li>删除文件</li>
+</ol>
+<p><code>git rm filename</code>  将删除对应的文件暂存到缓冲区（工作目录也会删除对应的文件）</p>
+<p><code>git rm --cached filename</code> 只从暂存区移除，工作区不删除</p>
 <ol start="6">
-<li><p><strong>添加组</strong></p>
-<p>groupadd groupname</p>
-</li>
-<li><p><strong>删除组</strong></p>
-<p>groupdel groupname</p>
-</li>
+<li>修改文件名</li>
 </ol>
-<h2 id="2-6-文件与目录权限"><a href="#2-6-文件与目录权限" class="headerlink" title="2.6 文件与目录权限"></a>2.6 文件与目录权限</h2><p><img src="https://raw.githubusercontent.com/PursueMilk/img/main/img/202307091546564.png" srcset="/img/loading.gif" lazyload alt="20230708224023"></p>
+<p><code>mv filename newFilename</code><br><code>git rm filename</code><br><code>git add newFilename</code></p>
+<p>总结：<code>git mv filename newFilename</code></p>
+<ol start="7">
+<li>查看提交历史</li>
+</ol>
+<p><code>git log </code> 按时间顺序列出所有提交，最近的在最上面</p>
+<p><code>git log --online</code> 查看简洁信息（每个提交信息在一行中显示）</p>
+<p><code>git log -n4</code> 只查看前几次提交信息</p>
+<p><code>git log --all</code> 查看所有分支的日志</p>
+<p><code>git log --all --graph</code> 图形化形式查看所有分支的日志</p>
+<ol start="8">
+<li>提交区操作</li>
+</ol>
+<p><code>git commit --amend</code>  对最近一次提交信息进行修改或者将第二次提交替代第一次提交</p>
+<p><code>git rebase -i parentid</code>     修改以前提交的commit信息，将需要修改的信息修改为 r</p>
+<p><code>git rebase -i parentid</code>      修改以前提交的信息，将需要修改的信息修改为 s</p>
+<p><code>git reset --hard commitid</code> 将之前提交的commit都清除，所有文件回到这个commit提交的内容</p>
+<ol start="9">
+<li>暂存区操作</li>
+</ol>
+<p><code>git reset head (filename)</code> 清空暂存区，可以指定文件</p>
+<p><code>git checkout filename</code>  将工作区恢复成最近一次提交内容</p>
+<p><code>git chechout commitID </code>切换到该次提交（头指针分离）</p>
+<ol start="10">
+<li>远程仓库</li>
+</ol>
+<p><code>git remote -v</code> 显示需要读写远程仓库使用的 Git 保存的简写与其对应的 URL </p>
+<p><code>git remote add name url</code> 添加一个新的远程 Git 仓库</p>
+<p><code>git remote rename oldname newname</code> 远程仓库重命名</p>
+<p><code>git remote remove name</code> 删除远程仓库，其相关分支以及配置也会被删除</p>
+<p><code>git fetch remotename branchname</code> 拉取远端分支</p>
+<p><code>git push remotename branch</code> 向远端推送分支</p>
+<p><code>git push &lt;remote&gt; localbranch:refs/for/remotebranch  </code> 向远端推送分支（需要进行code review）</p>
+<blockquote>
+<p>git push origin HEAD:refs&#x2F;for&#x2F;remotebranch</p>
+</blockquote>
+<h2 id="2-Git分支"><a href="#2-Git分支" class="headerlink" title="2. Git分支"></a>2. Git分支</h2><p>使用分支可以把个人工作从开发主线上分离开来，以免影响开发主线。创建分支只是创建了一个可移动的新指针，通过head指针就可以知道当前处于哪个分支上。</p>
+<p><img src="https://raw.githubusercontent.com/PursueMilk/img/main/img/202307091714266.png" srcset="/img/loading.gif" lazyload alt="img"></p>
 <ol>
-<li><p>文件类型：- 普通文件、d 目录 、b 特殊文件、c 字符特殊文件、l 符号连接、f 命名管道、s 套接字文件</p>
-</li>
-<li><p>文件权限：分为属主、组、其他用户权限，权限表示 r 4 读、w 2 写、x 1 执行</p>
-</li>
-<li><p>目录权限：x 进入目录、rx 显示目录内的文件名、wx 修改目录内的文件名</p>
-</li>
-<li><p>修改权限</p>
-<p>chmod 权限 filename</p>
-<p>chown user:group filename 修改所属主、属组</p>
-</li>
+<li>分支命令</li>
 </ol>
-<h1 id="三、系统管理"><a href="#三、系统管理" class="headerlink" title="三、系统管理"></a>三、系统管理</h1><h2 id="3-1-网络管理"><a href="#3-1-网络管理" class="headerlink" title="3.1 网络管理"></a>3.1 网络管理</h2><ol>
-<li><p><strong>查看网卡信息</strong></p>
-<p>ifconfig</p>
-</li>
-</ol>
-<blockquote>
-<p>inet代表 ip 地址</p>
-</blockquote>
+<p><code>git branch</code> 分支列表</p>
+<p><code>git branch name</code> 创建分支</p>
+<p><code>git branch -D name</code>  删除分支</p>
+<p><code>git checkout (-b) name</code> 切换分支（创建并切换分支）</p>
+<p><code>git branch --merged</code> 查看已合并的分支</p>
+<p><code>git branch --no-merged</code> 查看未合并的分支</p>
 <ol start="2">
-<li><p><strong>查看网关</strong></p>
-<p>route -n</p>
-</li>
+<li>远程分支</li>
 </ol>
-<blockquote>
-<p>-n不解析域名</p>
-</blockquote>
+<p>远程分支以 remotename&#x2F;branch 命名，如 origin&#x2F;master </p>
+<p><code>git remote show name</code> 查看远程分支信息</p>
+<p><code>git fetch remotename branchname</code> 同步远程分支数据，不写远程仓库默认所有的，不写分支默认远程仓库所有分支</p>
+<p><code>git merge branch</code> 合并冲突</p>
+<p><code>git pull remotename remotebranch:localbranch</code> 从远程仓库拉取数据并合并，省略本地分支则默认当前所在分支</p>
+<p><code>git push remotename localbranch:remotebranch</code> 将数据推送到远程分支上</p>
 <ol start="3">
-<li><p><strong>测试网络连通性</strong></p>
-<p>ping ipaddress</p>
-</li>
+<li>跟踪分支</li>
 </ol>
-<h2 id="3-2-软件管理包"><a href="#3-2-软件管理包" class="headerlink" title="3.2 软件管理包"></a>3.2 软件管理包</h2><h3 id="3-2-1-rpm软件包管理器"><a href="#3-2-1-rpm软件包管理器" class="headerlink" title="3.2.1 rpm软件包管理器"></a>3.2.1 rpm软件包管理器</h3><ol>
-<li><p><strong>查看已安装的rpm软件包</strong></p>
-<p>rpm -qa | grep more</p>
-<p>rpm -q 包名</p>
-</li>
-<li><p><strong>安装rpm软件包</strong></p>
-<p>rpm -i 包名</p>
-</li>
-<li><p><strong>卸载安装的rpm软件包</strong></p>
-<p>rpm -e 包名</p>
-</li>
+<p>跟踪分支是与远程分支有直接关系的本地分支。</p>
+<p><code>git checkout -b localbranch remotename/branch</code> 创建跟踪分支（起点在remotename&#x2F;branch上的分支）</p>
+<p><code>git branch -u remotename/branch</code> 设置跟踪分支</p>
+<p><code>git branch -vv</code> 可查看本地分支跟踪的远程分支</p>
+<ol start="4">
+<li>删除远程分支</li>
 </ol>
-<h3 id="3-2-2-yum包管理工具"><a href="#3-2-2-yum包管理工具" class="headerlink" title="3.2.2 yum包管理工具"></a>3.2.2 yum包管理工具</h3><ol>
-<li><p><strong>安装软件包</strong></p>
-<p>yum install 包名</p>
-</li>
-<li><p><strong>卸载软件包</strong></p>
-<p>yum remove 包名</p>
-</li>
-<li><p><strong>更新软件包</strong></p>
-<p>yum update 包名 (不指定则更新所有软件包)</p>
-</li>
+<p><code>git push &lt;remote&gt; --delete branch</code> 删除远程分支</p>
+<ol start="5">
+<li>变基</li>
 </ol>
+<p>使用 rebase 命令将提交到某一分支上的所有修改都移至另一分支上，这个操作就叫变基。</p>
+<p><code>git rebase branch</code>  以该分支为基底 </p>
+<ol start="6">
+<li>缓存</li>
+</ol>
+<p><code>git stash</code> 将当前改动暂存 </p>
+<p><code>git stash list</code> 查看暂存列表</p>
+<p><code>git stash pop</code>  弹出第一个暂存</p>
+<p><code>git stash apply</code> 应用第一个暂存，不会从暂存列表中移除</p>
+<p><code>git stash clear</code> 清除暂存列表 </p>
+<ol start="7">
+<li>禁止行为</li>
+</ol>
+<p><code>git push -f</code>  强制推送</p>
+<p>不要对集成分支进行变基</p>
+<ol start="8">
+<li>实践</li>
+</ol>
+<p><code>git pull origin master:master</code> </p>
+<p><code>git merge --no-ff branchname</code></p>
+<p><code>git commit --amend</code></p>
+<p><code>git push origin HEAD:refs/for/master</code></p>
 <blockquote>
-<p>rpm需要自己解决依赖关系，软件包的来源不可靠，而yum是一个基于rpm的软件包管理器，会自动解决依赖性问题，使用yum包管理工具时需要修改yum镜像</p>
+<p>–no-ff 关闭快进模式，产生一个新的提交</p>
 </blockquote>
-<h3 id="3-2-3-源代码编译软件包"><a href="#3-2-3-源代码编译软件包" class="headerlink" title="3.2.3 源代码编译软件包"></a>3.2.3 源代码编译软件包</h3><ol>
-<li><p><strong>下载源代码软件包</strong></p>
-<p>wget 软件包地址</p>
-</li>
-<li><p><strong>解压软件包</strong></p>
-<p>tar zxf 软件包</p>
-</li>
-<li><p><strong>安装源代码软件包</strong></p>
-<p>.&#x2F;configure –prefix&#x3D;&#x2F;user&#x2F;local 指定安装位置</p>
-<p>make 编译</p>
-<p>make install 安装</p>
-</li>
-</ol>
-<h2 id="3-3-进程管理"><a href="#3-3-进程管理" class="headerlink" title="3.3 进程管理"></a>3.3 进程管理</h2><ol>
-<li><p><strong>ps查看进程</strong></p>
-<p>ps [参数]</p>
-<p>常见参数</p>
-<ul>
-<li>-e 显示所有进程</li>
-<li>-f 显示完整格式</li>
-</ul>
-</li>
-<li><p><strong>top查看进程</strong></p>
-<p>top [参数]</p>
-<p>常见参数</p>
-<ul>
-<li>-p进程号  指定进程</li>
-</ul>
-</li>
-</ol>
-<blockquote>
-<p>pstree以树状图的方式展现进程之间的派生关系</p>
-</blockquote>
-<ol start="3">
-<li><p><strong>结束进程</strong></p>
-<p>kill -9 PID</p>
-</li>
-</ol>
-<h2 id="3-4-内存与磁盘管理"><a href="#3-4-内存与磁盘管理" class="headerlink" title="3.4 内存与磁盘管理"></a>3.4 内存与磁盘管理</h2><ol>
-<li><p><strong>查看内存使用率和内存大小</strong></p>
-<p>free [参数]</p>
-</li>
-</ol>
-<blockquote>
-<p>top 也可以查看</p>
-</blockquote>
-<ol start="2">
-<li><p>磁盘使用率和分区</p>
-<p>fdisk [参数]</p>
-</li>
-</ol>
-<h1 id="四、Shell"><a href="#四、Shell" class="headerlink" title="四、Shell"></a>四、Shell</h1><p>shell是一个命令解释器，接受命令解释给内核再将结果返回到终端上，centos7终端的Shell是bash</p>
-<h2 id="4-1-Shell脚本"><a href="#4-1-Shell脚本" class="headerlink" title="4.1 Shell脚本"></a>4.1 Shell脚本</h2><p><strong>脚本执行</strong></p>
-<ol>
-<li>bash xx.sh 执行脚本</li>
-<li>.&#x2F;xx.sh 执行脚本</li>
-<li>source .&#x2F;xx.sh </li>
-<li>. xx.sh</li>
-</ol>
-<p>1、2会产生新的子进程运行脚本，3、4不会产生子进程运行脚本会对当前环境产生影响</p>
-<p><strong>管道与管道符</strong></p>
-<p>管道符为 ｜，将前一个命令执行的结果传递给后一个命令</p>
-<h1 id="五、文本操作与服务管理"><a href="#五、文本操作与服务管理" class="headerlink" title="五、文本操作与服务管理"></a>五、文本操作与服务管理</h1><ol>
-<li><p><strong>查找</strong></p>
-<p>locate</p>
-</li>
-<li><p><strong>文本替换</strong></p>
-<p>sed  参数  filename</p>
-</li>
-</ol>
-<blockquote>
-<p>sed -i ‘s&#x2F;book&#x2F;books&#x2F;g’ file  匹配file文件中每一行的所有book替换为books</p>
-</blockquote>
-<ol start="3">
-<li><p><strong>远程连接</strong></p>
-<p>ssh [-p 端口] username@远程ip</p>
-</li>
+<h2 id="3-GitHub"><a href="#3-GitHub" class="headerlink" title="3. GitHub"></a>3. GitHub</h2><ol>
+<li><code>in:readme</code> 在readme中搜索</li>
 </ol>
 
                 
@@ -686,7 +446,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Linux/" class="category-chain-item">Linux</a>
+  <a href="/categories/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" class="category-chain-item">版本控制</a>
   
   
 
@@ -701,9 +461,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">#操作系统</a>
+        <a href="/tags/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/">#版本控制</a>
       
-        <a href="/tags/Linux/">#Linux</a>
+        <a href="/tags/Git/">#Git</a>
       
     </div>
   
@@ -715,8 +475,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Linux</div>
-      <div>https://pursuemilk.github.io/2023/07/09/Linux/</div>
+      <div>版本控制</div>
+      <div>https://pursuemilk.github.io/2023/07/09/版本控制/</div>
     </div>
     <div class="license-meta">
       
@@ -766,18 +526,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/07/09/%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6/" title="版本控制">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">版本控制</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/03/26/%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/" title="工厂模式">
-                        <span class="hidden-mobile">工厂模式</span>
+                      <a href="/2023/07/09/Linux/" title="Linux">
+                        <span class="hidden-mobile">Linux</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
